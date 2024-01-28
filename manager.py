@@ -3,7 +3,7 @@ import os.path
 from colorama import Fore, Style
 import json
 
-from moduls.file_manager import FileManager
+from moduls.file_manager import FileManager, get_content, get_dirs, get_files, get_system_info
 from moduls.menu import get_item_menu
 from moduls.victory import victory
 from moduls.home_bank import bank_account
@@ -32,16 +32,16 @@ def main():
                 print(Style.RESET_ALL, end='')
                 manager.copying(name=name, path=path)
             case 4:
-                for file in manager.get_content():
+                for file in get_content():
                     print(file)
             case 5:
-                for file in manager.get_dirs():
+                for file in get_dirs():
                     print(file)
             case 6:
-                for file in manager.get_files():
+                for file in get_files():
                     print(file)
             case 7:
-                print(manager.get_system_info())
+                print(get_system_info())
             case 8:
                 print(manager.author())
             case 9:
@@ -55,8 +55,8 @@ def main():
             case 12:
                 print(manager.get_home_dir())
             case 13:
-                dirs = f'dirs: {", ".join(manager.get_dirs())}'
-                files = f'files: {", ".join(manager.get_files())}'
+                dirs = f'dirs: {", ".join(get_dirs())}'
+                files = f'files: {", ".join(get_files())}'
                 if not os.path.isdir('output'):
                     os.mkdir('output')
                 with open('output/listdir.txt', 'w') as file:

@@ -7,6 +7,40 @@ from colorama import Fore, Style
 import platform
 
 
+def get_system_info():
+    system = platform.uname()
+    return f"""
+    Система: {Fore.GREEN}{system.system}{Style.RESET_ALL}
+    Имя машины: {Fore.GREEN}{system.node}{Style.RESET_ALL}
+    Релиз: {Fore.GREEN}{system.release}{Style.RESET_ALL}
+    Версия: {Fore.GREEN}{system.version}{Style.RESET_ALL}
+    Машина: {Fore.GREEN}{system.machine}{Style.RESET_ALL}
+    Процессор: {Fore.GREEN}{system.processor}{Style.RESET_ALL}
+    """
+
+
+def get_dirs():
+    """
+    Печать файлов в папке
+    """
+    return [name for name in os.listdir() if os.path.isdir(name)]
+
+
+def get_files():
+    """
+    Печать директорий в папке
+    """
+    return [name for name in os.listdir() if os.path.isfile(os.path.join(name))]
+
+
+def get_content():
+   """
+   Возвращает все содержимое папки
+   :return: список файлов и папок
+   """
+   return list(os.listdir())
+
+
 class FileManager:
     def __init__(self, name='Kuklin Alexandr', email='sir.kuklin2014@yandex.ru'):
         self.__path = os.getcwd()
@@ -56,36 +90,6 @@ class FileManager:
                 shutil.rmtree(f'{self.__path}/{name}')
             else:
                 print(f'{Fore.RED}[ERROR coping]Unknown error{Style.RESET_ALL}')
-
-    def get_content(self):
-       """
-       Возвращает все содержимое папки
-       :return: список файлов и папок
-       """
-       return list(os.listdir())
-
-    def get_files(self):
-        """
-        Печать директорий в папке
-        """
-        return [name for name in os.listdir() if os.path.isfile(os.path.join(name))]
-
-    def get_dirs(self):
-        """
-        Печать файлов в папке
-        """
-        return [name for name in os.listdir() if os.path.isdir(name)]
-
-    def get_system_info(self):
-        system = platform.uname()
-        return f"""
-        Система: {Fore.GREEN}{system.system}{Style.RESET_ALL}
-        Имя машины: {Fore.GREEN}{system.node}{Style.RESET_ALL}
-        Релиз: {Fore.GREEN}{system.release}{Style.RESET_ALL}
-        Версия: {Fore.GREEN}{system.version}{Style.RESET_ALL}
-        Машина: {Fore.GREEN}{system.machine}{Style.RESET_ALL}
-        Процессор: {Fore.GREEN}{system.processor}{Style.RESET_ALL}
-        """
 
     def author(self):
         return f"Автор программы\nИмя: {self.__name}\nПочта: {self.__email}"

@@ -29,7 +29,7 @@ def show_history(n=10):
     print()
 
 
-class Personal_account():
+class PersonaAccount():
     def __init__(self):
         with open('data/personal_account', 'r') as f:
             self.__balance = float(f.read())
@@ -101,7 +101,7 @@ def input_sum(action) -> dict[str, str | float]:
 
 
 def bank_account():
-    account = Personal_account()
+    account = PersonaAccount()
 
     with open('etc/config.json') as file:
         menu = json.load(file)
