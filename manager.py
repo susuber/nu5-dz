@@ -3,7 +3,7 @@ import json
 
 from moduls.file_manager import FileManager
 from moduls.menu import get_item_menu
-from moduls import victory
+from moduls.victory import victory
 from moduls.home_bank import bank_account
 
 
@@ -31,17 +31,20 @@ def main():
             print(Style.RESET_ALL, end='')
             manager.copying(name=name, path=path)
         elif num_menu == 4:
-            manager.print_content()
+            for file in manager.get_content():
+                print(file)
         elif num_menu == 5:
-            manager.print_dirs()
+            for file in manager.get_dirs():
+                print(file)
         elif num_menu == 6:
-            manager.print_files()
+            for file in manager.get_files():
+                print(file)
         elif num_menu == 7:
-            manager.print_system_info()
+            print(manager.get_system_info())
         elif num_menu == 8:
-            manager.author()
+            print(manager.author())
         elif num_menu == 9:
-            victory.victory()
+            victory()
         elif num_menu == 10:
             bank_account()
         elif num_menu == 11:
@@ -49,7 +52,7 @@ def main():
             manager.change_directory(directory=directory)
             print(Style.RESET_ALL)
         elif num_menu == 12:
-            manager.print_home_dir()
+            print(manager.get_home_dir())
         else:
             print(f'{Fore.BLUE}Функционал в процессе разработки{Style.RESET_ALL}')
 

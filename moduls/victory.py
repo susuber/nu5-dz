@@ -16,7 +16,7 @@ class Man:
         else:
             return False
 
-def random(n:int) -> dict:
+def random(n: int) -> dict:
     '''
     Выборка случайных людей из базы
     :param n: число случайных людей
@@ -35,7 +35,7 @@ def random(n:int) -> dict:
 def input_date(person: object) -> list:
     '''
     Ввод даты рождения
-    :param n:
+    :param person: Объект персоны
     :return:
     '''
 
