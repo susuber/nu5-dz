@@ -1,3 +1,5 @@
+import os.path
+
 from colorama import Fore, Style
 import json
 
@@ -55,6 +57,8 @@ def main():
             case 13:
                 dirs = f'dirs: {", ".join(manager.get_dirs())}'
                 files = f'files: {", ".join(manager.get_files())}'
+                if not os.path.isdir('output'):
+                    os.mkdir('output')
                 with open('output/listdir.txt', 'w') as file:
                     file.write(f'{files}\n{dirs}')
             case 14:
