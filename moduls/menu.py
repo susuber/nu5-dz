@@ -1,6 +1,9 @@
 from colorama import Fore, Style
+import os
+from moduls.decorator import clear
 
 
+@clear
 def get_item_menu(menu: dict) -> int:
     """
     Выводит меню программы и возвращает выбранный пункт
@@ -8,9 +11,11 @@ def get_item_menu(menu: dict) -> int:
     :return:
     """
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
         for key, value in menu.items():
             print(Fore.GREEN, key, Style.RESET_ALL, value)
 
+        print()
         point = input(f'Выберите пункт меню: {Fore.GREEN}')
         print(Style.RESET_ALL, end='')
 
