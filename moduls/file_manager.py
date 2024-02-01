@@ -13,11 +13,11 @@ class FileManager:
         self.__email = email
         self.__name = name
 
-    def print_home_dir(self):
+    def get_home_dir(self):
         """
         Печать текущего каталога
         """
-        print(self.__path)
+        return self.__path
 
     def new_folder(self, folder_name: str) -> None:
         """
@@ -57,40 +57,38 @@ class FileManager:
             else:
                 print(f'{Fore.RED}[ERROR coping]Unknown error{Style.RESET_ALL}')
 
-    def print_content(self):
-        """
-        Печать всего содержимого папки
-        """
-        for file in os.listdir():
-            print(file)
+    def get_content(self):
+       """
+       Возвращает все содержимое папки
+       :return: список файлов и папок
+       """
+       return list(os.listdir())
 
-    def print_files(self):
+    def get_files(self):
         """
         Печать директорий в папке
         """
-        for folder in [name for name in os.listdir() if os.path.isfile(os.path.join(name))]:
-            print(folder)
+        return [name for name in os.listdir() if os.path.isfile(os.path.join(name))]
 
-    def print_dirs(self):
+    def get_dirs(self):
         """
         Печать файлов в папке
         """
-        for folder in [name for name in os.listdir() if os.path.isdir(name)]:
-            print(folder)
+        return [name for name in os.listdir() if os.path.isdir(name)]
 
-    def print_system_info(self):
+    def get_system_info(self):
         system = platform.uname()
-        print(f"Система: {Fore.GREEN}{system.system}{Style.RESET_ALL}")
-        print(f"Имя машины: {Fore.GREEN}{system.node}{Style.RESET_ALL}")
-        print(f"Релиз: {Fore.GREEN}{system.release}{Style.RESET_ALL}")
-        print(f"Версия: {Fore.GREEN}{system.version}{Style.RESET_ALL}")
-        print(f"Машина: {Fore.GREEN}{system.machine}{Style.RESET_ALL}")
-        print(f"Процессор: {Fore.GREEN}{system.processor}{Style.RESET_ALL}")
+        return f"""
+        Система: {Fore.GREEN}{system.system}{Style.RESET_ALL}
+        Имя машины: {Fore.GREEN}{system.node}{Style.RESET_ALL}
+        Релиз: {Fore.GREEN}{system.release}{Style.RESET_ALL}
+        Версия: {Fore.GREEN}{system.version}{Style.RESET_ALL}
+        Машина: {Fore.GREEN}{system.machine}{Style.RESET_ALL}
+        Процессор: {Fore.GREEN}{system.processor}{Style.RESET_ALL}
+        """
 
     def author(self):
-        print("Автор программы")
-        print(f'Имя: {self.__name}')
-        print(f'Почта: {self.__email}')
+        return f"Автор программы\nИмя: {self.__name}\nПочта: {self.__email}"
 
     def change_directory(self, directory: str) -> None:
         if os.path.isdir(f'{self.__path}/{directory}'):
@@ -98,3 +96,5 @@ class FileManager:
             self.__path = os.getcwd()
         else:
             print(f'{Fore.RED}[ERROR]{directory} не найдена')
+
+
