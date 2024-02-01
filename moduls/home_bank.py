@@ -1,4 +1,5 @@
 import json
+import os
 from typing import Dict
 
 import yaml
@@ -6,8 +7,10 @@ from colorama import Fore, Style, init
 import sqlite3
 
 from moduls.menu import get_item_menu
+from moduls.decorator import  pause
 
 
+@pause
 def show_history(n=10):
     connection = sqlite3.connect('data/finance.db')
     transactions = connection.cursor()
@@ -82,6 +85,7 @@ class PersonaAccount():
         with open('data/personal_account', 'w') as f:
             f.write(str(self.__balance))
 
+    @pause
     def amount_account(self):
         print()
         print(f'Сумма на счете: {Fore.GREEN}{self.__balance}{Style.RESET_ALL}', end="\n\n")
@@ -107,6 +111,7 @@ def bank_account():
         menu = json.load(file)
 
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
         num_menu = get_item_menu(menu['bank'])
 
         if num_menu == 1:

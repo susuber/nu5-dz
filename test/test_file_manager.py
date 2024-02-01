@@ -13,7 +13,7 @@ def test_get_home_dir():
 
 def test_new_folder():
     manager = FileManager()
-    manager.new_folder("test_folder")
+    new_folder("test_folder")
     assert os.path.isdir(f'{os.getcwd()}/test_folder')
     shutil.rmtree(f'{os.getcwd()}/test_folder')
 

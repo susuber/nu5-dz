@@ -1,5 +1,6 @@
 # Викторина
 import json
+import os
 from random import choices
 
 
@@ -88,6 +89,7 @@ def end_game():
 
 def victory():
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
         statistics = 0
         n = input_n()
 
@@ -97,6 +99,7 @@ def victory():
             if person.check(date):
                 statistics += 1
 
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(f"Колличество верных ответов:     {statistics}")
         print(f"Количество ошибок:              {n - statistics}")
         print(f"Процент правильных ответов:     {round(statistics / n * 100, 2)}")
