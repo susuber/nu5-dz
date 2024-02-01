@@ -4,7 +4,7 @@ from random import choices
 
 
 class Man:
-    def __init__(self, name:str, data:list):
+    def __init__(self, name: str, data: list):
         self.date = int(data[2])
         self.mouth = int(data[1])
         self.year = int(data[0])
@@ -16,7 +16,8 @@ class Man:
         else:
             return False
 
-def random(n:int) -> dict:
+
+def random(n: int) -> dict:
     '''
     Выборка случайных людей из базы
     :param n: число случайных людей
@@ -35,12 +36,13 @@ def random(n:int) -> dict:
 def input_date(person: object) -> list:
     '''
     Ввод даты рождения
-    :param n:
+    :param person: Объект персоны
     :return:
     '''
 
     while True:
-        date = input(f"Ввдите дату рождения {person.name} в формате дд.мм.гггг (ОТВЕТ {person.date}.{person.mouth}.{person.year}): ")
+        date = input(
+            f"Ввдите дату рождения {person.name} в формате дд.мм.гггг (ОТВЕТ {person.date}.{person.mouth}.{person.year}): ")
         date = date.split(sep='.')
         if len(date) != 3:
             print("Неверный ввод")
@@ -83,6 +85,7 @@ def end_game():
         else:
             print("Неверный ввод, только Да или Нет")
 
+
 def victory():
     while True:
         statistics = 0
@@ -105,5 +108,3 @@ def victory():
 
 if __name__ == '__main__':
     victory()
-
-
